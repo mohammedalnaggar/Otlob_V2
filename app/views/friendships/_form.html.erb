@@ -1,0 +1,35 @@
+<%= form_with(model: friendship, local: true) do |form| %>
+  <% if friendship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(friendship.errors.count, "error") %> prohibited this friendship from being saved:</h2>
+
+      <ul>
+      <% friendship.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <% if friendship.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', friendship, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+
+
+    <% if friendship.persisted? %>
+      <%= link_to "Cancel", friendship, class: "btn btn-link float-right" %>
+    <% else %>
+
+<div class="col-sm-6 text-right">
+  <%= link_to friendship, class: 'btn btn-primary' do %>
+    Cancel
+  <% end %>
+  </div>
+
+    <% end %>
+  </div>
+<% end %>

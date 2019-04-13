@@ -1,0 +1,22 @@
+<h1>New friendship</h1>
+
+<% for user in @users %>
+  <div class="user float-left" style="margin: 20px;padding:15px; text-align:center;width:200px" >
+    <p>
+    
+        <div >
+            <%= image_tag user_avatar(user, 100), class: "rounded-circle" %>
+        </div>
+ 
+      <strong><%=h user.first_name %> <%=h user.last_name %> </strong> <br>
+      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+      <div class="clear"></div>
+    </p>
+  </div>
+<% end %>
+
+<div style="margin-top: 10%;margin-bottom:20%;"> <br>  </div>
+<hr>
+
+
+<%= render 'form', friendship: @friendship %>

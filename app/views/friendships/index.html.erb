@@ -1,0 +1,48 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Your Friends</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_friendship_path, class: 'btn btn-primary' do %>
+    Add New Friendship
+  <% end %>
+  </div>
+
+</div>
+
+<% for friendship in current_user.friendships %>
+  <div class="user float-left" style="margin: 20px;padding:15px; text-align:center;width:200px" >
+    <p>
+    
+        <div >
+            <%= image_tag user_avatar(friendship.friend, 100), class: "rounded-circle" %>
+        </div>
+      <strong><%=h friendship.friend.first_name %> <%=h friendship.friend.last_name %> </strong> <br>
+      <%= link_to "Unfriend", friendship, :method => :delete %>
+    </p>
+  </div>
+<% end %>
+
+<div style="margin-top: 120px;margin-bottom:10%;"> <br>  </div>
+<hr>
+
+<h2>Users Who Have Befriended You</h2>
+<ul>
+  <% for user in current_user.inverse_friends %>
+ <div class="user float-left" style="margin: 20px;padding:15px; text-align:center;width:200px" >
+    <p>
+    
+        <div >
+            <%= image_tag user_avatar(user, 100), class: "rounded-circle" %>
+        </div>
+      <strong><%=h user.first_name %> <%=h user.last_name %> </strong> <br>
+    </p>
+  </div>
+  <% end %>
+</ul>
+
+<div style="margin-top: 10%;margin-bottom:250px;"> <br>  </div>

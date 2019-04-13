@@ -356,6 +356,7 @@ DEPENDENCIES
   omniauth-twitter (~> 1.4)
   puma (~> 3.11)
   rails (~> 5.2.3)
+  redis (~> 4.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq (~> 5.2, >= 5.2.5)
