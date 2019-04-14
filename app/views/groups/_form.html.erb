@@ -30,7 +30,7 @@
     <%= form.submit class: 'btn btn-primary' %>
 
     <% if group.persisted? %>
-      <%= link_to "Cancel", group, class: "btn btn-link" %>
+      <%= link_to "Cancel", groups_path, class: "btn btn-link" %>
     <% else %>
       <%= link_to "Cancel", groups_path, class: "btn btn-link" %>
     <% end %>

@@ -7,7 +7,7 @@
         <div >
             <%= image_tag user_avatar(user, 100), class: "rounded-circle" %>
         </div>
- 
+        
       <strong><%=h user.first_name %> <%=h user.last_name %> </strong> <br>
       <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
       <div class="clear"></div>

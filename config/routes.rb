@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :friendships
   resources :groups
-  resources :posts
   
   namespace :admin do
       resources :users 
