@@ -1,0 +1,57 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :restaurant %>
+    <%= form.text_field :restaurant, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :order_for %>
+    <%= form.text_field :order_for, class: 'form-control' %>
+  </div>
+
+ <div class="form-group">
+    
+    <%= form.label :menu %>
+    <%= form.file_field :menu%>
+  </div>
+
+<div class="form-group" >
+  <% if @order.menu.attached? %>
+      <image src="<%=(url_for(@order.menu)) %>" , style="width:500px">
+    <%else%>
+      <%= image_tag gravatar_image_url('mohammed.alnaggar93@gmail.com', size: 250 ) %>
+  <% end %>
+  </div>
+
+    <%= form.text_field :status, class: 'form-control', type: 'hidden'  %>
+    <%= form.text_field :user_id, class: 'form-control', value: current_user.try(:id), type: 'hidden' %>
+
+
+  <div class="form-group">
+    <% if order.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', order, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if order.persisted? %>
+      <%= link_to "Cancel", orders_path, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", orders_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

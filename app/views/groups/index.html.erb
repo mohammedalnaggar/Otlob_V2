@@ -30,7 +30,7 @@
             <td><%= link_to group.name, group %></td>
             <td>
                 <%= link_to 'Edit Name', edit_group_path(group) , class: "btn btn-secondary float-left"%>
-                <%= link_to 'Destroy', group, method: :delete, class: "text-danger float-right ", data: { confirm: 'Deleted data can not be retrieved, are you sure you want to delete? ' } %>
+                <%= link_to 'Destroy', group, method: :delete, class: "text-danger float-right", data: { confirm: 'Deleted data can not be retrieved, are you sure you want to delete? ' } %>
             </td>
         <% end %>
       <% end %>

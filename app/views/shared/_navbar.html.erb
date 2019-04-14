@@ -27,6 +27,7 @@
           <% end %>
          </li>
 
+          <li class="nav-item"><%= link_to "Orders", orders_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Friends", friendships_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Groups", groups_path, class: "nav-link" %></li>
 
@@ -35,6 +36,7 @@
 
               <%= image_tag user_avatar(current_user, 40), class: "rounded-circle" %>
             <% end %>
+
             <div id="nav-account-dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown">
               <% if current_user.admin? %>
                 <%= link_to "Admin Area", admin_root_path, class: "dropdown-item" %>
@@ -43,6 +45,7 @@
               <div class="dropdown-divider"></div>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
+            
           </li>
 
         <% else %>

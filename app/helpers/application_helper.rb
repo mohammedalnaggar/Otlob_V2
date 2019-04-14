@@ -15,5 +15,4 @@ module ApplicationHelper
       gravatar_image_url('mohammed.alnaggar93@gmail.com', size: size )
     end
   end
-  
 end
