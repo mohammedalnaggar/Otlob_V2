@@ -8,7 +8,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container">
   <span>&#129305;</span> 
-     <%= link_to "Otlob", root_path, class: "navbar-brand" %>
+     <%= link_to "Otlob", main_app.root_path, class: "navbar-brand" %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,9 +27,13 @@
           <% end %>
          </li>
 
-          <li class="nav-item"><%= link_to "Orders", orders_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Friends", friendships_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Groups", groups_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path ,class: "nav-link"%></li>
+
+          <li class="nav-item"><%= link_to "What's New", main_app.announcements_path, class: "nav-link" %></li>
+
+          <li class="nav-item"><%= link_to "Orders", main_app.orders_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Friends", main_app.friendships_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Groups", main_app.groups_path, class: "nav-link" %></li>
 
           <li class="nav-item dropdown">
             <%= link_to "#", id: "navbar-dropdown", class: "nav-link dropdown-toggle", data: { target: "nav-account-dropdown", toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
@@ -41,9 +45,9 @@
               <% if current_user.admin? %>
                 <%= link_to "Admin Area", admin_root_path, class: "dropdown-item" %>
               <% end %>
-              <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Settings", main_app.edit_user_registration_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%= link_to "Logout", main_app.destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
             
           </li>

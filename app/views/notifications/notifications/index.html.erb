@@ -1,0 +1,30 @@
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Notifications</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to notifications.clean_notifications_path, class: 'btn btn-primary' , method: 'delete' do %>
+    Clean all
+  <% end %>
+  </div>
+</div>
+
+
+<div class="notifications row">
+  <div  class='col-sm-6 text-left'>
+    <% if @notifications.blank? %>
+      <div class=" text-right no-records"><%= t('notifications.no_records') %></div>
+
+    <% else %>
+      <% @notification_groups.each do |group, notifications| %>
+        <div class="notification-group">
+          <div class="group-title"><%= group %></div>
+          <%= render notifications %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= paginate @notifications %>
+</div>
