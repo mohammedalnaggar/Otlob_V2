@@ -27,7 +27,11 @@
           <% end %>
          </li>
 
-          <li class="nav-item"><%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path ,class: "nav-link"%></li>
+          <% if Notification.unread_count(current_user) > 0 %>
+                <li class="nav-item"><%= link_to "Notifications (#{Notification.unread_count(current_user)})", notifications_path ,class: "nav-link", style: "color:red" %></li>
+            <% else %>
+                <li class="nav-item"><%= link_to "Notifications (#{Notification.unread_count(current_user)})", notifications_path ,class: "nav-link" %></li>
+          <% end %>
 
           <li class="nav-item"><%= link_to "What's New", main_app.announcements_path, class: "nav-link" %></li>
 
