@@ -4,7 +4,7 @@ A simple ordering system to facilitate ordering from restaurants with your frien
 
 This README would normally document whatever steps are necessary to get the application up and running.
 
-~~Requirements
+Requirements
 
 You'll need the following installed to run the application successfully:
 
