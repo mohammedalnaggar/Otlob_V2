@@ -1,25 +1,14 @@
-# README
+# Otlob Ordering System 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple ordering system to facilitate ordering from restaurants with your friends at university or work.
 
-Things you may want to cover:
+This README would normally document whatever steps are necessary to get the application up and running.
 
-* Ruby version
+~~Requirements
 
-* System dependencies
+You'll need the following installed to run the application successfully:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# Otlob_V2
+    Redis - For ActionCable support
+    bundler - gem install bundler
+    Yarn -  https://yarnpkg.com/en/docs/install
+    
