@@ -1,13 +1,18 @@
 <div class="page-header">
-  <%= link_to orders_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    All Orders
-  <% end %>
+  <h1>Show order</h1>
+
+  
+
   <%= link_to edit_order_path(@order), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show order</h1>
+
+<%= link_to orders_path, class: 'btn btn-secondary float-right' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back to All Orders
+  <% end %>
+
 </div>
 
 <dl class="dl-horizontal">
@@ -20,10 +25,11 @@
   <dt>Status:</dt>
   <dd><%= @order.status %></dd>
 
+  <dt>Menu:</dt>
 <% if @order.menu.attached? %>
-      <image src="<%=(url_for(@order.menu)) %>" , style="width:500px">
+      <image src="<%=(url_for(@order.menu)) %>" , style="width:50%; margin-bottom:50px; margin-top:10px;   position: relative;">
     <%else%>
-      <%= image_tag gravatar_image_url('mohammed.alnaggar93@gmail.com', size: 250 ) %>
+      <dd> There is no menu attached on this order. </dd>
 <% end %> 
 
 </dl>
