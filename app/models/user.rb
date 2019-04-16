@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_person_name
 
   has_many :services
+  has_many :notifications,  dependent: :destroy
 
   has_one_attached :avatar
 
@@ -18,9 +19,5 @@ class User < ApplicationRecord
   has_many :groups, dependent: :destroy
 
   has_many :orders, dependent: :destroy
-
-  def follow(user)
-    Notification.create(notify_type: 'follow', actor: self, user: user)
-  end
 
 end

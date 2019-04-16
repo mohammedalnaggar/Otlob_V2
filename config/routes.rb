@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   mount Notifications::Engine => "/notifications"
   resources :orders
   resources :friendships
-  resources :groups
+
+  resources :groups do 
+    resources :group_members
+  end
   
   namespace :admin do
     resources :users 

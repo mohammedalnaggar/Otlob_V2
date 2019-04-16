@@ -27,7 +27,7 @@
     <%= form.file_field :menu%>
   </div>
 
-<div class="form-group" >
+  <div class="form-group" >
   <% if @order.menu.attached? %>
       <image src="<%=(url_for(@order.menu)) %>" , style="width:500px">
     <%else%>
