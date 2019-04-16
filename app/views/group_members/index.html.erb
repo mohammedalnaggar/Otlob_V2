@@ -19,7 +19,11 @@
   <div class="user float-left" style="margin: 20px;padding:15px; text-align:center;width:200px" >
     <p>
         <div >
-            <%= image_tag user_avatar(group_member.user, 100), class: "rounded-circle" %>
+        <% if group_member.user.avatar.attached? %>
+                <%= image_tag group_member.user.avatar.variant(resize: "#{100}x#{100}!"), class: "rounded-circle" %>
+            <% else %>
+                  <%= image_tag("avatar1.png", :alt => "Avatar Image", :style => "height:100px;width:100px;") %>
+            <%end%>
         </div>
       <strong><%=h group_member.user.first_name %> <%=h group_member.user.last_name %> </strong> <br>
       <%= link_to 'Remove from group', group_group_member_path(group_member.group.id,group_member.id), method: :delete, data: { confirm: 'Are you sure?' } %>    </p>

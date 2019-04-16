@@ -31,7 +31,8 @@
   <% if @order.menu.attached? %>
       <image src="<%=(url_for(@order.menu)) %>" , style="width:500px">
     <%else%>
-      <%= image_tag gravatar_image_url('mohammed.alnaggar93@gmail.com', size: 250 ) %>
+       <%= image_tag "avatar.png", :alt => "Avatar Image", :style => "height:40px;width:40px;" %>
+
   <% end %>
   </div>
 

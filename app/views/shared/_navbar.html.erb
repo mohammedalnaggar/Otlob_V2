@@ -46,7 +46,7 @@
             <% if current_user.avatar.attached? %>
                 <image src="<%=(main_app.url_for(current_user.avatar)) %>" , style="height:40px;width:40px;border-radius: 50%;">
               <%else%>
-                <%= image_tag gravatar_image_url('mohammed.alnaggar93@gmail.com', size: 40 ) %>
+                <%= image_tag("avatar1.png", :alt => "Avatar Image", :style => "height:40px;width:40px;") %>
             <% end %>
          
             <% end %>

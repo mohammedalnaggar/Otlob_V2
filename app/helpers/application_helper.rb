@@ -8,11 +8,4 @@ module ApplicationHelper
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
 
-  def user_avatar (user, size = 40)
-    if user.avatar.attached?
-      user.avatar.variant(resize: "#{size}x#{size}!")
-    else
-      gravatar_image_url('mohammed.alnaggar93@gmail.com', size: size )
-    end
-  end
 end

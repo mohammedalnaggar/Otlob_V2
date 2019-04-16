@@ -5,7 +5,11 @@
     <p>
     
         <div >
-            <%= image_tag user_avatar(user, 100), class: "rounded-circle" %>
+           <% if user.avatar.attached? %>
+                <%= image_tag user.avatar.variant(resize: "#{100}x#{100}!"), class: "rounded-circle" %>
+            <% else %>
+                  <%= image_tag("avatar1.png", :alt => "Avatar Image", :style => "height:100px;width:100px;") %>
+            <%end%>
         </div>
         
       <strong><%=h user.first_name %> <%=h user.last_name %> </strong> <br>

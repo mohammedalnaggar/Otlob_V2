@@ -8,7 +8,13 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-4">
-          <%= image_tag user_avatar(resource, 100), class: "rounded-circle" %>
+
+            <% if resource.avatar.attached? %>
+                <%= image_tag resource.avatar.variant(resize: "#{100}x#{100}!"), class: "rounded-circle" %>
+            <% else %>
+                <%= image_tag("avatar1.png", :alt => "Avatar Image", :style => "height:100px;width:100px;") %>
+            <%end%>
+          
           </div>
           <div class="col-sm-8">
             <%= f.file_field :avatar%>
