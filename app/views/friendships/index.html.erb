@@ -5,7 +5,7 @@
 <hr>
   <div class="col-sm-6 text-right">
   <%= link_to new_friendship_path, class: 'btn btn-primary' do %>
-    Add New Friendship
+    Create New Friendship
   <% end %>
   </div>
 </div>
@@ -28,7 +28,7 @@
   </div>
 <% end %>
 
-<div style="margin-top: 20%;margin-bottom:10%;"> <br>  </div>
+<div style="clear:both;"></div>
 <hr>
 
 <h2>Users Who Have Befriended You</h2>
@@ -38,7 +38,11 @@
     <p>
     
         <div >
-            <%= image_tag user_avatar(user, 100), class: "rounded-circle" %>
+        <% if user.avatar.attached? %>
+                <%= image_tag user.avatar.variant(resize: "#{100}x#{100}!"), class: "rounded-circle" %>
+            <% else %>
+                  <%= image_tag("avatar1.png", :alt => "Avatar Image", :style => "height:100px;width:100px;") %>
+            <%end%>
         </div>
       <strong><%=h user.first_name %> <%=h user.last_name %> </strong> <br>
     </p>
@@ -46,4 +50,4 @@
   <% end %>
 </ul>
 
-<div style="margin-top: 10%;margin-bottom:250px;"> <br>  </div>
+<div style="clear:both;"></div>

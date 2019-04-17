@@ -1,18 +1,6 @@
 <div class="page-header">
   <h1>Show order</h1>
 
-  
-
-  <%= link_to edit_order_path(@order), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-
-<%= link_to orders_path, class: 'btn btn-secondary float-right' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back to All Orders
-  <% end %>
-
 </div>
 
 <dl class="dl-horizontal">
@@ -33,3 +21,13 @@
 <% end %> 
 
 </dl>
+
+ <%= link_to edit_order_path(@order), class: 'btn btn-primary float-right' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+
+<%= link_to orders_path, class: 'btn btn-secondary ' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back to All Orders
+  <% end %>

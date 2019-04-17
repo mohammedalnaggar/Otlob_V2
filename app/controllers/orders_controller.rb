@@ -5,12 +5,14 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = current_user.orders
-
+    @involvedOrders = OrderUser.where('user_id = (?)',current_user.try(:id))
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order = Order.find(params[:id])
+    @order_users = @order.order_users
   end
 
   # GET /orders/new
@@ -26,8 +28,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = current_user.orders.build(order_params)
+    @orderUser = @order.order_users.build(:user_id => current_user.try(:id) , :status => 1)
     respond_to do |format|
-      if @order.save
+      if @order.save && @orderUser.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -74,6 +77,10 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
 
+    def delete_records
+      @order=OrderUser.select("id").where('order_id NOT IN (?)',Order.select("id").all).destroy_all
+    end
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:restaurant, :order_for, :status, :user_id, :menu)

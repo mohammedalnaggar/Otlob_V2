@@ -1,0 +1,44 @@
+<%= form_with(model: order_user, local: true) do |form| %>
+  <% if order_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order_user.errors.count, "error") %> prohibited this order_user from being saved:</h2>
+
+      <ul>
+      <% order_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :status %>
+    <%= form.number_field :status, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :order_id %>
+    <%= form.text_field :order_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if order_user.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', order_user, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if order_user.persisted? %>
+      <%= link_to "Cancel", order_user, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", order_users_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

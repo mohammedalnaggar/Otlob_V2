@@ -43,9 +43,16 @@ class FriendshipsController < ApplicationController
   # DELETE /friendships/1.json
   def destroy
     @friendship = current_user.friendships.find(params[:id])
+    @groups = current_user.groups
+    for group in @groups
+      if group.users.include? @friendship.friend
+          @x= group.users.select('id').find(@friendship.friend.id)
+          group.group_members.where('user_id = (?)',@x).destroy_all
+      end
+    end
     @friendship.destroy
     flash[:notice] = "Removed friendship."
-    redirect_to friendships_path
+    redirect_to friendship_path(current_user.try(:id))
   end
 
   private

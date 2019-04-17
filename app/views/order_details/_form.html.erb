@@ -1,0 +1,54 @@
+<%= form_with(model: order_detail, local: true) do |form| %>
+  <% if order_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order_detail.errors.count, "error") %> prohibited this order_detail from being saved:</h2>
+
+      <ul>
+      <% order_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :item %>
+    <%= form.text_field :item, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :amount %>
+    <%= form.number_field :amount, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price %>
+    <%= form.text_field :price, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :comment %>
+    <%= form.text_field :comment, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :order_user_id %>
+    <%= form.text_field :order_user_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if order_detail.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', order_detail, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if order_detail.persisted? %>
+      <%= link_to "Cancel", order_detail, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", order_details_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

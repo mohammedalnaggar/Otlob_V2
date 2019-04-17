@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_152251) do
+ActiveRecord::Schema.define(version: 2019_04_16_222109) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -92,6 +92,27 @@ ActiveRecord::Schema.define(version: 2019_04_16_152251) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "notify_type"], name: "index_notifications_on_user_id_and_notify_type"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.string "item"
+    t.integer "amount"
+    t.float "price"
+    t.string "comment"
+    t.integer "order_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_user_id"], name: "index_order_details_on_order_user_id"
+  end
+
+  create_table "order_users", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.integer "order_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_users_on_order_id"
+    t.index ["user_id"], name: "index_order_users_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|

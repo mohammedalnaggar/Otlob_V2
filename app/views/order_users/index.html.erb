@@ -1,0 +1,45 @@
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1> <b> <%= @order.restaurant%> </b> order members</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_order_order_user_path, class: 'btn btn-primary' do %>
+    Invite new member/s
+  <% end %>
+  </div>
+</div>
+
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>User</th>
+            <th>Status</th>
+            <th>Action</th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @order_users.each do |order_user| %>
+
+        <%= content_tag :tr, id: dom_id(order_user), class: dom_class(order_user) do %>
+          
+                      <td><%= order_user.user.email %></td>
+                      <td><%= order_user.status %></td>
+
+
+            <td><%= link_to 'Remove invitation', order_order_user_path(order_user.order.id,order_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<%= link_to 'Back', orders_path , class:"btn btn-secondary"%>
+
+</div>

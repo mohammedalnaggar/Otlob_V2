@@ -1,7 +1,5 @@
-<h1>New friendship</h1>
-
+<h1> Invie Friends </h1>
 <% for user in @users %>
-
   <div class="user " style="margin: 2%x;padding:2%; text-align:center;width:200px ;float: left" >
     <p>
     
@@ -14,14 +12,37 @@
         </div>
         
       <strong><%=h user.first_name %> <%=h user.last_name %> </strong> <br>
-      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+      <%= link_to "Invite", order_order_users_path(params[:order_id],:user_id => user), :method => :post %>
       <div class="clear"></div>
     </p>
   </div>
 <% end %>
 
+
 <div style="clear:both;"></div>
 <hr>
 
 
-<%= render 'form', friendship: @friendship %>
+<h1> Invie Groups </h1>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+  <tr>
+    <th> Name </th>
+
+    <th colspan="2">Actions</th>
+  </tr>
+ 
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= group.name%>
+      <td><%= link_to "Invie All Group Members", add_group_path(params[:order_id],:group_id => group) %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
+
+
+
+<%= link_to 'Cancel', order_order_users_path , class:"btn btn-secondary "%>
+<hr>
