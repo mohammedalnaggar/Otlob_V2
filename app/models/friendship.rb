@@ -8,10 +8,11 @@ class Friendship < ApplicationRecord
     private
 
     def friended
-        Notification.create(notify_type: 'follow', actor: self.user, user: self.friend, target: self.friend)
+        Notification.create(notify_type: 'follow', actor: self.user, user: self.friend)
     end
     
     def unfriended
-        Notification.create(notify_type: 'unfriend', actor: self.user, user: self.friend, target: self.friend)
+        Notification.create(notify_type: 'unfriend', actor: self.user, user: self.friend)
     end
 end
+

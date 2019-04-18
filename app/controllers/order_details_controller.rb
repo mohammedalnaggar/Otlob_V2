@@ -7,6 +7,7 @@ class OrderDetailsController < ApplicationController
     @order_users = OrderUser.select('id').where('order_id = (?) ',params[:order_id])
     @order_details = OrderDetail.where('order_user_id IN (?) ',@order_users)
     @order = Order.find(params[:order_id])
+    @invited_users = @order_users.count
   end
 
   # GET /order_details/1

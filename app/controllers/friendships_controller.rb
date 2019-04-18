@@ -52,7 +52,7 @@ class FriendshipsController < ApplicationController
     end
     @friendship.destroy
     flash[:notice] = "Removed friendship."
-    redirect_to friendship_path(current_user.try(:id))
+    redirect_to friendships_path
   end
 
   private

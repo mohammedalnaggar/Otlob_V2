@@ -31,9 +31,11 @@
                       <td><%= order_user.user.email %></td>
                       <td><%= order_user.status %></td>
 
-
-            <td><%= link_to 'Remove invitation', order_order_user_path(order_user.order.id,order_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+            <% if order_user.user.id != current_user.id %>
+              <td><%= link_to 'Remove invitation', order_order_user_path(order_user.order.id,order_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% else%>
+              <td> </td>
+            <% end %>
         <% end %>
       <% end %>
     </tbody>
