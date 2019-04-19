@@ -18,8 +18,27 @@
                 <% end %>
               </tbody>
             </table>
-          </div>
-    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+          <h1>Friends Activities</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+              <tbody>
+                <% @friendsOrders.each do |friend| %>
+                    <% for friendOrder in friend.orders.order(created_at: :desc).last("10") %>
+                        <%= content_tag :tr, id: dom_id(friendOrder), class: dom_class(friendOrder) do %>
+                            <% if Time.now.to_date - friendOrder.created_at.to_date < 7 %>
+                                <td><%="#{friendOrder.user.name}"+" has created an order for "+"#{friendOrder.order_for}"+" from "+ "#{friendOrder.restaurant }"%></td>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+              </tbody>
+            </table>
+        </div>
     </div>
       
       
