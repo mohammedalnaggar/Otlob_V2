@@ -3,10 +3,10 @@
 
 </div>
 
-<dl class="dl-horizontal" >
-  <dt> Restaurant: </dt> 
+<dl class="dl-horizontal">
+  <dt> Restaurant: </dt>
   <dd><%= @order.restaurant %></dd>
- 
+
   <dt>Order for:</dt>
   <dd><%= @order.order_for %></dd>
 
@@ -14,22 +14,24 @@
   <dd><%= @order.status %></dd>
 
   <dt>Menu:</dt>
-    <% if @order.menu.attached? %>
-          <image src="<%=(url_for(@order.menu))%>" , style="width:50%; margin-bottom:50px; margin-top:10px;   position: relative;">
-        <%else%>
-          <dd> There is no menu attached on this order. </dd>
-    <% end %> 
+  <% if @order.menu.attached? %>
+  <image src="<%=(url_for(@order.menu))%>" ,
+    style="width:50%; margin-bottom:50px; margin-top:10px;   position: relative;">
+    <%else%>
+    <dd> There is no menu attached on this order. </dd>
+    <% end %>
 
 </dl>
 
 <% if @order.status != 'Finished'%>
- <%= link_to edit_order_path(@order), class: 'btn btn-primary float-right' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
+<%= link_to edit_order_path(@order), class: 'btn btn-primary float-right' do %>
+<span class="glyphicon glyphicon-pencil"></span>
+Edit
+<% end %>
 
 <%= link_to orders_path, class: 'btn btn-secondary ' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back to All Orders
-  <% end %>
-  <hr>
+<span class="glyphicon glyphicon-list-alt"></span>
+Back to All Orders
+<% end %>
+<hr>
+<% end %>

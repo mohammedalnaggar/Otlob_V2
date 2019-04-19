@@ -19,12 +19,7 @@ class OrderDetailsController < ApplicationController
  
   def new
     @order_info = OrderDetail.where('order_user_id = (?) ',params[:order_user_id]).count
-    if @order_info == 0
-       @order_detail = OrderDetail.new
-    else
-      @order_detail = OrderDetail.where('order_user_id = (?) ',params[:order_user_id])
-      redirect_to edit_order_order_user_order_detail_path(params[:order_id],params[:order_user_id],@order_detail.ids)
-    end
+    @order_detail = OrderDetail.new
   end
 
   # GET /order_details/1/edit
