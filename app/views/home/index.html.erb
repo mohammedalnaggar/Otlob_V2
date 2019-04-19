@@ -9,7 +9,15 @@
               <tbody>
                 <% @latestOrders.each do |order| %>
                   <%= content_tag :tr, id: dom_id(order), class: dom_class(order) do %>
-                    <% if order.status != "Finished" %>
+                    <% if order.status != "Finished" %> 
+                        <% for orderUser in order.order_users.order(created_at: :desc) %>
+                            <%= content_tag :tr, id: dom_id(order), class: dom_class(order) do %>
+                                <% if orderUser.user.email != current_user.try(:email) %>
+                                <td><%= "You send an invetition to "+"#{orderUser.user.name }"+" to join your "+"#{order.order_for}"+" from "+"#{order.restaurant}" %></td>
+                           
+                                <% end %>
+                            <% end %>
+                        <% end %>
                         <td><%= link_to "#{order.order_for}"+" from "+"#{order.restaurant}"+" on "+"#{order.created_at.to_date}" ,order_order_user_order_details_path(order.id,order.id) %></td>
                     <% else %>
                         <td><%="#{order.order_for}"+" from "+"#{order.restaurant}"+" on "+"#{order.created_at.to_date}" %></td>
