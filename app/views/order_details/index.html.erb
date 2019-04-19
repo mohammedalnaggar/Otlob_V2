@@ -15,7 +15,7 @@
 </div>
 
 <div style='margin-bottom :2%'>
-  <% if @order.status == 'Waiting'%>
+  <% if @order.status == 'Waiting' %>
       <%= link_to  " #{@invited_users} friends are invited" , order_order_users_path(@order.id), class: 'btn btn-secondary'  %>
   <%end%>
 
