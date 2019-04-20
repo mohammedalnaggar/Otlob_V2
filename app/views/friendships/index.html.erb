@@ -14,13 +14,12 @@
   <div class="user float-left" style="margin: 20px;padding:15px; text-align:center;width:200px" >
     <p>
         <div >
-
             <% if friendship.friend.avatar.attached? %>
-                <%= image_tag friendship.friend.avatar.variant(resize: "#{100}x#{100}!"), class: "rounded-circle" %>
+              <image src="<%=(url_for(friendship.friend.avatar))%>" ,
+                style="height:100px;width:100px; border-radius: 50%;">
             <% else %>
                   <%= image_tag("avatar1.png", :alt => "Avatar Image", :style => "height:100px;width:100px;") %>
             <%end%>
-
         </div>
       <strong><%=h friendship.friend.first_name %> <%=h friendship.friend.last_name %> </strong> <br>
       <%= link_to "Unfriend", friendship, :method => :delete %>

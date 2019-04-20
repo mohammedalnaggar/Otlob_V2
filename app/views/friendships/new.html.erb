@@ -7,7 +7,8 @@
     
         <div >
            <% if user.avatar.attached? %>
-                <%= image_tag user.avatar.variant(resize: "#{100}x#{100}!"), class: "rounded-circle" %>
+           <image src="<%=(url_for(user.avatar))%>" ,
+                style="height:100px;width:100px; border-radius: 50%;">
             <% else %>
                   <%= image_tag("avatar1.png", :alt => "Avatar Image", :style => "height:100px;width:100px;") %>
             <%end%>

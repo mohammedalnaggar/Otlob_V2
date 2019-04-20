@@ -10,7 +10,7 @@ class HomeController < ApplicationController
         for orderUser in order.order_users.order(created_at: :desc)
             if orderUser.user.email != current_user.try(:email) 
               log[:time] = orderUser.created_at
-              log[:info] = "You send an invetition to " + orderUser.user.name + " to join your " + order.order_for + " from " + order.restaurant
+              log[:info] = "You send an invitation to " + orderUser.user.name + " to join your " + order.order_for + " from " + order.restaurant 
               log[:link] = false
               @latestActivity << log
               log= Hash.new
