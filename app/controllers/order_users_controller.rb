@@ -41,7 +41,7 @@ class OrderUsersController < ApplicationController
       @order = Order.find( params[:order_id])
       @orderUser = @order.order_users.build(:user_id => params[:user_id])
       if @orderUser.save
-          redirect_to order_order_users_path
+          redirect_to new_order_order_user_path
       else
           flash[:notice] = "Unable to add user."
           #   redirect_to root_url
