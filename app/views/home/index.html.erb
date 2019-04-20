@@ -2,25 +2,17 @@
     <h4>Welcome <%= current_user.name %></h4> <hr>
     <div class="row">
         <div class="col-sm-6">
-          <h1>Latest Orders</h1>
+          <h1>Your Activities</h1>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
               <tbody>
-                <% @latestOrders.each do |order| %>
-                  <%= content_tag :tr, id: dom_id(order), class: dom_class(order) do %>
-                    <% if order.status != "Finished" %> 
-                        <% for orderUser in order.order_users.order(created_at: :desc) %>
-                            <%= content_tag :tr, id: dom_id(order), class: dom_class(order) do %>
-                                <% if orderUser.user.email != current_user.try(:email) %>
-                                <td><%= "You send an invetition to "+"#{orderUser.user.name }"+" to join your "+"#{order.order_for}"+" from "+"#{order.restaurant}" %></td>
-                           
-                                <% end %>
-                            <% end %>
-                        <% end %>
-                        <td><%= link_to "#{order.order_for}"+" from "+"#{order.restaurant}"+" on "+"#{order.created_at.to_date}" ,order_order_user_order_details_path(order.id,order.id) %></td>
+                <% @latestActivity.each do |userActivity| %>
+                  <%= content_tag :tr do %>
+                    <% if userActivity[:link] != false %> 
+                        <td><%= link_to userActivity[:info] ,userActivity[:link] %></td>
                     <% else %>
-                        <td><%="#{order.order_for}"+" from "+"#{order.restaurant}"+" on "+"#{order.created_at.to_date}" %></td>
+                        <td><%= userActivity[:info] %></td>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -35,13 +27,9 @@
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
               <tbody>
-                <% @friendsOrders.each do |friend| %>
-                    <% for friendOrder in friend.orders.order(created_at: :desc).last("10") %>
-                        <%= content_tag :tr, id: dom_id(friendOrder), class: dom_class(friendOrder) do %>
-                            <% if Time.now.to_date - friendOrder.created_at.to_date < 7 %>
-                                <td><%="#{friendOrder.user.name}"+" has created an order for "+"#{friendOrder.order_for}"+" from "+ "#{friendOrder.restaurant }"%></td>
-                            <% end %>
-                        <% end %>
+                <% @friendsActivity.each do |activity| %>
+                   <%= content_tag :tr do %>
+                        <td><%= activity[:info] %></td>
                     <% end %>
                 <% end %>
               </tbody>
