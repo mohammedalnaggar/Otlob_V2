@@ -4,10 +4,11 @@ class OrderDetailsController < ApplicationController
   # GET /order_details
   # GET /order_details.json
   def index
-    @order_users = OrderUser.select('id').where('order_id = (?) ',params[:order_id])
-    @order_details = OrderDetail.where('order_user_id IN (?) ',@order_users)
+    order_users = OrderUser.select('id').where('order_id = (?) ',params[:order_id])
+    @order_details = OrderDetail.where('order_user_id IN (?) ',order_users)
     @order = Order.find(params[:order_id])
-    @invited_users = @order_users.count
+    @invited_users = Order.find(params[:order_id]).order_users.where('status = 0').count
+    @joined_users = Order.find(params[:order_id]).order_users.where('status = 1').count
   end
 
   # GET /order_details/1
@@ -48,7 +49,7 @@ end
   def update
     respond_to do |format|
       if @order_detail.update(order_detail_params)
-        format.html { redirect_to @order_detail, notice: 'Order detail was successfully updated.' }
+        format.html { redirect_to order_order_user_order_details_path, notice: 'Order detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @order_detail }
       else
         format.html { render :edit }

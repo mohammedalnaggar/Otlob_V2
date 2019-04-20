@@ -12,7 +12,11 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
-    @order_users = @order.order_users
+    order_users = OrderUser.select('id').where('order_id = (?) ',params[:id])
+    @order_details = OrderDetail.where('order_user_id IN (?) ',order_users)
+    @order = Order.find(params[:id])
+    @invited_users = Order.find(params[:id]).order_users.where('status = 0').count
+    @joined_users = Order.find(params[:id]).order_users.where('status = 1').count
   end
 
   # GET /orders/new
