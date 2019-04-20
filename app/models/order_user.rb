@@ -7,14 +7,23 @@ class OrderUser < ApplicationRecord
   after_commit :create_notifications, on: [:create]
   
   def create_notifications
-    for user in self.order.users 
+    user = self.user
       if user != self.order.user
         Notification.create(notify_type: 'invitation',
           actor: self.order.user,
           user: user,
           target: user,
           second_target: self.order)
+      end
+      for orderUser in self.order.users
+        if orderUser != self.order.user and self.user != orderUser
+          Notification.create(notify_type: 'notifyOrderUsers',
+            actor: self.order.user,
+            user: orderUser,
+            target: self.user,
+            second_target: self.order)
         end
       end
   end
+
 end
