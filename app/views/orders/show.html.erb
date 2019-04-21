@@ -31,6 +31,9 @@
 <% end %>
 </div>
 
+<div style="clear:both;"></div>
+<hr>
+
 <%= render :partial => 'order_details/order_details', order_details: @order_details ,order: @order ,invited_users: @invited_users  %>
 
 <%= link_to orders_path, class: 'btn btn-secondary ' do %>

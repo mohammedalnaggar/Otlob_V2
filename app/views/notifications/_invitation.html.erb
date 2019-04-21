@@ -1,8 +1,7 @@
 <div class="media-heading">
   <br>
-    <%= link_to notification.actor.first_name , main_app.friendships_path %> has invited you
-     to a  <%= notification.second_target.order_for %> from <%= notification.second_target.restaurant %> 
-    <%= link_to "Join" ,main_app.join_order_path(current_user.try(:id),notification.second_target.id) , class:"btn btn-primary btn-sm float-right"%> 
+  <%= notification.msg %>
+    <%= link_to "Join" ,main_app.join_order_path(current_user.try(:id),notification.second_target_id) , class:"btn btn-primary btn-sm float-right"%> 
   <hr>
 </div>
 

@@ -32,7 +32,7 @@
 
         <%= content_tag :tr, id: dom_id(order_user), class: dom_class(order_user) do %>
           
-                      <td><%= order_user.user.email %></td>
+                      <td><%= order_user.user.name %></td>
                       <td><%= order_user.status %></td>
 
             <% if order_user.user.id != order_user.order.user.id and current_user.try(:id) == order_user.order.user.id %>

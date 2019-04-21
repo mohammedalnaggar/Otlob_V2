@@ -29,7 +29,7 @@
           <%= content_tag :tr, id: dom_id(order_detail), class: dom_class(order_detail) do %>
             
             
-            <td><%= order_detail.order_user.user.email %></td> 
+            <td><%= order_detail.order_user.user.name %></td> 
             <td><%= order_detail.item %></td>
             <td><%= order_detail.amount %></td>
             <td><%= order_detail.price %></td>
@@ -38,8 +38,8 @@
             <td> 
              <% if order_detail.order_user.user.id == current_user.try(:id) %>
               <% if @order.status == 'Waiting'%>
-                <%= link_to 'Edit', edit_order_order_user_order_detail_path(params[:order_id],params[:order_user_id],order_detail.id) , class:"btn btn-secondary"%>
-                <%= link_to 'Cancel', order_order_user_order_detail_path(params[:order_id],params[:order_user_id],order_detail.id), method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn text-danger' %>
+                <%= link_to 'Edit', edit_order_order_user_order_detail_path(order_detail.order_user.order.id,order_detail.order_user.user.id,order_detail.id) , class:"btn btn-secondary"%>
+                <%= link_to 'Cancel', order_order_user_order_detail_path(order_detail.order_user.order.id,order_detail.order_user.user.id,order_detail.id), method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn text-danger' %>
               <% end %>
             <% end %>
            </td>
