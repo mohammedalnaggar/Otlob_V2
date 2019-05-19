@@ -20,13 +20,8 @@ class OrderUsersController < ApplicationController
     @order_users = Order.find(params[:order_id]).users
     @groups = current_user.groups.to_a
     for group in @groups 
-      print("&&&&&&&&&&&&",@groups)
       if @order_users.to_set.superset? group.users.to_set
-        print('**************',group.name)
         @groups.delete(group)
-        print('############', @groups)
-      else
-        print("XXXXXXXXXXXXXX")
       end
     end
   end
